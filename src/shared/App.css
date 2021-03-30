@@ -2,6 +2,13 @@
   text-align: center;
 }
 
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&family=Noto+Serif+KR:wght@300&display=swap");
+
+body {
+  font-family: "Nanum Myeongjo", serif;
+  font-family: "Noto Serif KR", serif;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

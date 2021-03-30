@@ -1,14 +1,11 @@
 import React from "react";
 import {Grid, Text} from "../elements";
 
-// import {Grid, Image, Text} from "../../elements";
-
-
 const Post = (props) => {
 
     return (
       <React.Fragment>
-        <Grid padding="16px">
+        <Grid padding="15px" boxshadow margin="10px 0px" bg="rgb(251, 251, 249)">
           <Grid padding="5px">
             <Grid is_flex>
               <Text underline>단어</Text> <Text>{props.insert_dt}</Text>
