@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-compoents";
+import styled from "styled-components";
 
 const Grid = (props) => {
   const {is_flex, width, padding, margin, bg, children} = props;
@@ -24,7 +24,7 @@ Grid.defaultProps = {
   width: "100%",
   padding: false,
   margin: false,
-  bg: false, 
+  bg: false,
 }
 
 const GridBox = styled.div`
