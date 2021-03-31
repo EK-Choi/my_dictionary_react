@@ -1,5 +1,5 @@
 import {createAction, handleActions} from "redux-actions";
-import {prodice} from "immer";
+import {produce} from "immer";
 
 const SET_POST = "SET_POST";
 const ADD_POST = "ADD_POST";

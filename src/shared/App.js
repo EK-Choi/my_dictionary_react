@@ -2,17 +2,21 @@ import './App.css';
 import React from "react";
 
 import {BrowserRouter, Route} from "react-router-dom";
+import {ConnectedRouter} from "connected-react-router";
+import {history} from "../redux/configureStore";
 
 import PostList from "../pages/PostList";
 import PostWrite from "../pages/PostWrite";
+import {Grid, Text, Input, Button} from "../elements/index";
 
 function App() {
   return (
     <React.Fragment>
-      <BrowserRouter>
+      <ConnectedRouter history={history}>
         <Route path="/" exact component={PostList}/>
         <Route path="/write" exact component={PostWrite}/>
-      </BrowserRouter>
+      </ConnectedRouter>
+      <Button is_float text="+"></Button>
     </React.Fragment>
   );
 }

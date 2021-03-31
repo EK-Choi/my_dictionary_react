@@ -1,9 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import {useSelector} from "react-redux";
 
 import Post from "../components/Post";
 
 const PostList = (props) => {
+  const post_list = useSelector((state) => state.post.list);
+  console.log(post_list);
+
   return(
     <React.Fragment>
       <Header onClick={()=>{window.scrollTo({ top: 0, behavior: 'smooth' })}}>
@@ -31,11 +35,15 @@ const Header = styled.div`
   top: 0;
   left: 0;
   right: 0;
+  cursor: pointer;
+  transition: all .4s linear;
+  :hover{
+    background-color: rgb(230, 234, 235);
+  }
 
   & h3{
     margin: 0px;
     color: rgb(58, 58, 58);
-    cursor: pointer
   }
 `;
 

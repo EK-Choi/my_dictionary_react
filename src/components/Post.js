@@ -8,7 +8,12 @@ const Post = (props) => {
         <Grid padding="15px" boxshadow margin="10px 0px" bg="rgb(251, 251, 249)">
           <Grid padding="5px">
             <Grid is_flex>
-              <Text underline>단어</Text> <Text>{props.insert_dt}</Text>
+              <Grid is_flex width="75%">
+                <Text underline>단어</Text>
+              </Grid>
+              <Grid is_flex width="auto">
+                <Text>{props.insert_dt}</Text>
+              </Grid>
             </Grid>
             <Text size="20px" bold>{props.word}</Text>
           </Grid>
