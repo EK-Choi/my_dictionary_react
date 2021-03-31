@@ -1,12 +1,18 @@
 import React from "react";
 import styled from "styled-components";
-import {useSelector} from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
 
 import Post from "../components/Post";
+import {actionCreators as postActions} from "../redux/modules/post";
 
 const PostList = (props) => {
+  const dispatch = useDispatch();
   const post_list = useSelector((state) => state.post.list);
   console.log(post_list);
+
+  React.useEffect(() => {
+    dispatch(postActions.getPostFB());
+  },[]);
 
   return(
     <React.Fragment>
@@ -14,14 +20,10 @@ const PostList = (props) => {
         <h3>신조어 사전</h3>
       </Header>
       <Back>
-        <Post/>
-        <Post/>
-        <Post/>
-        <Post/>
-        <Post/>
-        <Post/>
-        <Post/>
-        <Post/>
+        {/* <Post/> */}
+        {post_list.map((p,idx) => {
+          return <Post key={p.id} {...p}/>
+        })}
       </Back>
     </React.Fragment>
   )
