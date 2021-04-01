@@ -11,6 +11,7 @@ const PostList = (props) => {
   console.log(post_list);
 
   React.useEffect(() => {
+    // if(post_list.lenth === 0){}
     dispatch(postActions.getPostFB());
   },[]);
 

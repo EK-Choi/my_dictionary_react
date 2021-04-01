@@ -5,7 +5,7 @@ const Post = (props) => {
 
     return (
       <React.Fragment>
-        <Grid padding="15px" boxshadow margin="10px 0px" bg="rgb(251, 251, 249)">
+        <Grid padding="15px" boxshadow margin="10px auto" bg="rgb(251, 251, 249)" max_width>
           <Grid padding="5px">
             <Grid is_flex>
               <Grid is_flex width="75%">

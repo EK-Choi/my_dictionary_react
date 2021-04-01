@@ -3,26 +3,26 @@ import styled from "styled-components";
 import {Text, Grid} from "../elements";
 
 const Button = (props) => {
-  const {text, _onclick, is_float} = props;
+  const {text, _onClick, is_float} = props;
 
   if(is_float){
     return(
       <React.Fragment>
-        <FloatButton onClick={_onclick}>{text}</FloatButton>
+        <FloatButton onClick={_onClick}>{text}</FloatButton>
       </React.Fragment>
     )
   }
 
   return(
     <React.Fragment>
-      <ElButton onClick={_onclick}>{text}</ElButton>
+      <ElButton onClick={_onClick}>{text}</ElButton>
     </React.Fragment>
   )
 }
 
 Button.defaultProps = {
   text: "텍스트",
-  _onclick: () => {},
+  _onClick: () => {},
   is_float: false,
 }
 

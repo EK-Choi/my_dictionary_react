@@ -16,7 +16,7 @@ function App() {
         <Route path="/" exact component={PostList}/>
         <Route path="/write" exact component={PostWrite}/>
       </ConnectedRouter>
-      <Button is_float text="+"></Button>
+      <Button is_float text="+" _onClick={() => {history.push("/write")}}></Button>
     </React.Fragment>
   );
 }

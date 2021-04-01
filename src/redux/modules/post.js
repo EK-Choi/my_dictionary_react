@@ -1,6 +1,7 @@
 import {createAction, handleActions} from "redux-actions";
 import {produce} from "immer";
 import {firestore} from "../../shared/firebase";
+import moment from "moment";
 
 const SET_POST = "SET_POST";
 const ADD_POST = "ADD_POST";
@@ -13,11 +14,32 @@ const initialState = {
 }
 
 const initialPost = {
-  word: "머선129",
-  description: "무슨 일이야 의 사투리 표현의 변형",
-  example: "아니 이게 머선129",
-  insert_dt: "2021-02-27",
+  word: "",
+  description: "",
+  example: "",
+  insert_dt: moment().format("YYYY-MM-DD"),
 };
+
+const addPostFB = (word, description, example) => {
+  return function(dispatch, getState, {history}){
+    const postDB = firestore.collection("post");
+    const _post = {
+      ...initialPost,
+      word: word,
+      description: description,
+      example: example,
+      insert_dt: moment().format("YYYY-MM-DD")
+    };
+
+    postDB.add({..._post}).then((doc) => {
+      let post = {..._post, id:doc.id};
+      dispatch(addPost(post));
+      history.replace("/");
+    }).catch((err) => {
+      console.log("post 작성 실패", err);
+    })
+  }
+}
 
 const getPostFB = () => {
   return function(dispatch, getState, {history}){
@@ -26,17 +48,10 @@ const getPostFB = () => {
     postDB.get().then((docs)=>{
       let post_list = [];
       docs.forEach((doc)=>{
-        let _post = {
-          id: doc.id,
-          ...doc.data()
-        };
-        let post ={
-          id: doc.id,
-          word: _post.word,
-          description: _post.description,
-          example: _post.example,
-          insert_dt: _post.insert_dt,
-        };
+        let _post = doc.data();
+        let post = Object.keys(_post).reduce((acc,cur) => {
+          return{...acc, [cur]: _post[cur]}
+        },{id: doc.id});
         post_list.push(post);
       })
       console.log(post_list);
@@ -51,7 +66,7 @@ export default handleActions(
       draft.list = action.payload.post_list;
     }),
     [ADD_POST]: (state, action) => produce(state, (draft)=>{
-
+      draft.list.unshift(action.payload.post);
     }),
   }, initialState
 );
@@ -60,6 +75,7 @@ const actionCreators = {
   setPost,
   addPost,
   getPostFB,
+  addPostFB
 }
 
 export {actionCreators};
